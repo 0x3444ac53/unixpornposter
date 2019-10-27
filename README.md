@@ -2,6 +2,8 @@
 
 Small cli tool for quickly making a post to [r/unixporn](https://reddit.com/r/unixporn)
 
+![./show_off.gif]
+
 ### Installation & Setup
 
 ```shell
