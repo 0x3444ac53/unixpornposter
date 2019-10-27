@@ -23,7 +23,7 @@ def main(folder : str) -> str:
         credentials = eval(f.read())
     title, comment = riceDetails.main(folder)
     link = upload_scrots(folder, title)
-    submission = redditpost.main(title, 'riceporn', credentials, url=link)
+    submission = redditpost.main(title, 'unixporn', credentials, url=link)
     submission.reply(comment)
     return submission.permalink
 
