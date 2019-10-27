@@ -1,2 +1,2 @@
-import redditpost
-import riceDetails
+import unixpornposte.redditpost
+import unixpornposte.riceDetails
