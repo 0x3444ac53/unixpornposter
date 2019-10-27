@@ -1,7 +1,7 @@
 import praw
 import argparse
-import unixpornposte.redditpost
-import unixpornposte.riceDetails
+import unixpornposter.redditpost
+import unixpornposter.riceDetails
 import elliesImgurUploader.imgurUploader as imgurUploader
 import os
 
