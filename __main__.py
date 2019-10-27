@@ -1,6 +1,6 @@
 import praw
 import argparse
-from unixpornposter import *
+from unixpornposter import redditpost, riceDetails
 import elliesImgurUploader.imgurUploader as imgurUploader
 import os
 
