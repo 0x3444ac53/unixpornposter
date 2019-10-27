@@ -1,2 +1,1 @@
-import unixpornposter.redditpost
-import unixpornposter.riceDetails
+from unixpornposter import *
