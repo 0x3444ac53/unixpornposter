@@ -2,7 +2,7 @@
 
 Small cli tool for quickly making a post to [r/unixporn](https://reddit.com/r/unixporn)
 
-!()[https://github.com/Lifesgood123/unixpornposter/blob/master/show_off.gif?raw=true]
+![](https://github.com/Lifesgood123/unixpornposter/blob/master/show_off.gif?raw=true)
 
 ### Installation & Setup
 
