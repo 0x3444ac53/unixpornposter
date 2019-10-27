@@ -1,26 +1,44 @@
 import argparse
+import katfetch
 
 def make_comment(deets : dict) -> str:
     """
     args should be in format
     "thing title" : ("link title", "link")
     """
-    template = "+ **{}**: [{}]({})\n"
+    link_template = "+ **{}**: [{}]({})\n"
+    template = "+ **{}**: {}\n"
     comment = ""
     for i in deets.keys():
-        comment = comment + template.format(i, deets[i][0], deets[i][1])
+        if type(i) is tuple:
+            comment = comment + link_template.format(i, deets[i][0], deets[i][1])
+        elif type(i) is str:
+            comment = comment + template.format(i, deets[i])
     return comment
 
-def get_deets(file_path : str) -> tuple:
+def get_deets(file_path : str, gen=False) -> tuple:
     """
     gets deets from file
     and returns a tuple with the format
     (title, deets)
     """
+    generated = {}
+    if gen:
+        generated = {
+            'shell' : str(katfetch.get_shell.subprocess.Popen(["echo $SHELL"], shell=True, stdout=katfetch.get_shell.subprocess.PIPE).communicate()[0], 'utf-8').strip().split('/')[-1],
+            'wm' : katfetch.get_wm.wm(),
+            'terminal' : katfetch.get_term.term(),
+            'distro' : katfetch.distro.name()}
     with open(file_path) as f:
         deets = eval(f.read())
-    title = deets['title']
+    final_deets = {}
+    for i in generated.keys():
+        final_deets[i] = generated[i]
+    for i in deets.keys():
+        final_deets[i.lower()] = deets[i]
+    title = f'[{deets["wm"]}] {deets["title"]}'
     del deets['title']
+    del deets['wm']
     return (title, deets)
 
 def get_args():
@@ -30,6 +48,6 @@ def get_args():
     p.add_argument('--dry_run', action='store_true')
     return p.parse_args()
 
-def main(folder : str):
+def main(folder : str, gen=False):
     title, details = get_deets(f'{folder}/details')
     return title, make_comment(details)
