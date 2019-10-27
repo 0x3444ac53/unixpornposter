@@ -44,8 +44,7 @@ pip install --user unixpornposter
     "title"       : "I can't wait to be done with this"
     "wm"          : "sowm"
     }
-   
-```
+   ```
    
 Entries can be either a `str` or a `tuple`, and both the `title` and `wm` entries must be strings, and are required. 
    
