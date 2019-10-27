@@ -8,13 +8,13 @@ def make_comment(deets : dict) -> str:
     """
     link_template = "+ **{}**: [{}]({})\n"
     template = "+ **{}**: {}\n"
-    comment = ""
+    comment = []
     for i in deets.keys():
-        if type(i) is tuple:
-            comment = comment + link_template.format(i, deets[i][0], deets[i][1])
-        elif type(i) is str:
-            comment = comment + template.format(i, deets[i])
-    return comment
+        if type(deets[i]) is tuple:
+            comment.append(link_template.format(i.capitalize(), deets[i][0], deets[i][1]))
+        elif type(deets[i]) is str:
+            comment.append(template.format(i.capitalize(), deets[i]))
+    return "".join(comment)
 
 def get_deets(file_path : str, gen=False) -> tuple:
     """
@@ -37,9 +37,9 @@ def get_deets(file_path : str, gen=False) -> tuple:
     for i in deets.keys():
         final_deets[i.lower()] = deets[i]
     title = f'[{deets["wm"]}] {deets["title"]}'
-    del deets['title']
-    del deets['wm']
-    return (title, deets)
+    del final_deets['title']
+    del final_deets['wm']
+    return (title, final_deets)
 
 def get_args():
     p = argparse.ArgumentParser()
@@ -49,5 +49,5 @@ def get_args():
     return p.parse_args()
 
 def main(folder : str, gen=False):
-    title, details = get_deets(f'{folder}/details')
+    title, details = get_deets(f'{folder}/details', gen)
     return title, make_comment(details)

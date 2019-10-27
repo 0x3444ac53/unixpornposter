@@ -6,10 +6,9 @@ import os
 
 def get_args():
     p = argparse.ArgumentParser()
-    p = args.add_mutually_exclusive_group()
     p.add_argument('path', help='the folder where your rice files are located')
     p.add_argument('-g', '--generate', help='uses the katfetch module to generte basic details', action='store_true')
-    a = args.parse_args()
+    return p.parse_args()
 
 
 def upload_scrots(directory : str, title : str) -> str:
@@ -25,7 +24,7 @@ def main(folder : str, gen=False) -> str:
         credentials = eval(f.read())
     title, comment = riceDetails.main(folder, gen=gen)
     link = upload_scrots(folder, title)
-    submission = redditpost.main(title, 'unixporn', credentials, url=link)
+    submission = redditpost.main(title, 'riceporn', credentials, url=link)
     submission.reply(comment)
     return submission.permalink
 
