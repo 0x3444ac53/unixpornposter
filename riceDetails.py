@@ -25,7 +25,7 @@ def get_deets(file_path : str, gen=False) -> tuple:
     generated = {}
     if gen:
         generated = {
-            'shell' : str(katfetch.get_shell.version(pretty=False).split('/')[-1],
+            'shell' : katfetch.get_shell.version(pretty=False).split('/')[-1],
             'wm' : katfetch.get_wm.wm(),
             'terminal' : katfetch.get_term.term(),
             'distro' : katfetch.distro.name()
@@ -37,7 +37,7 @@ def get_deets(file_path : str, gen=False) -> tuple:
         final_deets[i] = generated[i]
     for i in deets.keys():
         final_deets[i.lower()] = deets[i]
-    title = f'[{deets["wm"]}] {deets["title"]}'
+    title = f'[{final_deets["wm"]}] {final_deets["title"]}'
     del final_deets['title']
     del final_deets['wm']
     return (title, final_deets)
