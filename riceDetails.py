@@ -25,10 +25,11 @@ def get_deets(file_path : str, gen=False) -> tuple:
     generated = {}
     if gen:
         generated = {
-            'shell' : str(katfetch.get_shell.subprocess.Popen(["echo $SHELL"], shell=True, stdout=katfetch.get_shell.subprocess.PIPE).communicate()[0], 'utf-8').strip().split('/')[-1],
+            'shell' : str(katfetch.get_shell.version(pretty=False).split('/')[-1],
             'wm' : katfetch.get_wm.wm(),
             'terminal' : katfetch.get_term.term(),
-            'distro' : katfetch.distro.name()}
+            'distro' : katfetch.distro.name()
+                    }
     with open(file_path) as f:
         deets = eval(f.read())
     final_deets = {}
